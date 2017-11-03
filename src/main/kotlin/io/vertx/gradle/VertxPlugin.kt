@@ -150,13 +150,13 @@ class VertxPlugin : Plugin<Project> {
       if (vertxExtension.redeploy) {
         main = "io.vertx.core.Launcher"
 
-        if (vertxExtension.launcher == "io.vertx.core.Launcher") {
-          if (vertxExtension.mainVerticle.isBlank()) {
+        if (vertxExtension.mainVerticle.isBlank()) {
+          if (vertxExtension.launcher == "io.vertx.core.Launcher") {
             throw GradleException("Extension property vertx.mainVerticle must be specified when using io.vertx.core.Launcher as a launcher")
           }
-          args("run", vertxExtension.mainVerticle)
-        } else {
           args("run")
+        } else {
+          args("run", vertxExtension.mainVerticle)
         }
 
         args("--launcher-class", vertxExtension.launcher)
